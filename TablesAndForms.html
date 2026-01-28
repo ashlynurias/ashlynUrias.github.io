@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Tables and Forms
+        </title>
+        </head>
+        <body>
+          <h1>Pizza Ordering Form</h1><br>
+           <form>
+            <!--Contact Info-->
+            <h2>Contact Information</h2>
+            <label for="inName">Name:</label>
+            <input type="text" name="inName" id="inName" required><br>
+            <label for="inPhone">Phone:</label>
+            <input type="text" name="inPhone" id="inPhone" required><br>
+            <label for="inEmail">Email:</label>
+            <input type="text" name="inEmail" id="inEmail" required><br>
+            <!--Select Pizza Size-->
+            <h2>Select Pizza Size</h2>
+            <label for="size">Pizza Size:</label>
+            <select name="size" id="size" required>
+                <option value="" disabled selected>Select a Size</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+                <option value="XLarge">X-Large</option>
+            </select>
+
+            <!--Select Sauce-->
+            <h2>Select Sauce:</h2>
+            <input type="radio" name="inSauce" required><label>Marinara</label><br>
+            <input type="radio" name="inSauce"><label>Ranch</label><br>
+            <input type="radio" name="inSauce"><label>No Sauce</label><br>
+
+            <!--Select Pizza Topping-->
+            <h2>Select Toppings</h2>
+            <input type="checkbox" name="inTop"><label>Pepperoni</label>
+            <input type="checkbox" name="inTop"><label>Sausage</label><br>
+            <input type="checkbox" name="inTop"><label>Mushroom</label>
+            <input type="checkbox" name="inTop"><label>Pineapple</label><br>
+            <input type="checkbox" name="inTop"><label>Peppers</label>
+            <input type="checkbox" name="inTop"><label>Onions</label>
+
+            
+            <!--Additional Comment-->
+            <h2>Additional Instructions</h2> <br>
+            <textarea name="addInfo">Add Instructions</textarea>
+            <br>
+            <input type="submit" value="Submit">
+           </form> 
+           <!--End of Pizza Ordering Form-->
+           <br><br>
+           <!--Favorite Video Game Table-->
+           <table border="2">
+            <!--Title Row-->
+            <tr> 
+                <th>Developer</th>
+                <th>Title</th>
+                <th>Year</th>
+            </tr>
+            <!--Nintendo Row-->
+            <tr>
+               <td rowspan=4>
+                Nintendo
+               </td>
+
+               <tr>
+               <td>
+                Tomodachi Life
+               </td>
+               <td>
+                2013
+               </td>
+               </tr>
+
+               <tr>
+               <td>
+                Mario Kart 8
+               </td>
+               <td>
+                2014
+               </td>
+               </tr>
+               
+               <tr>
+               <td>
+                Animal Crossing: New Horizons
+               </td>
+               <td>
+                2020
+               </td>
+               </tr>
+            
+            <!--Roblox row-->
+            <tr>
+                <td>
+                    Roblox Corporation
+                </td>
+                <td>
+                    Roblox
+                </td>
+                <td>
+                    2006
+                </td>
+            </tr>
+
+            <!--Total row-->
+            <tr>
+                <td colspan=3>
+                    Total: 4 Games
+                </td>
+            </tr>
+           </table>
+        </body>
+</html>
