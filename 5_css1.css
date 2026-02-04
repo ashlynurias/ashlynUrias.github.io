@@ -1,0 +1,86 @@
+/*Body*/
+body {
+    background-color:#b9dfe8;
+    font-family: Georgia, "Times New Roman", serif;
+    margin: 0;
+    padding: 0 20px;
+    color: #000;
+}
+
+
+/*Headers*/
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 50px;
+    margin: 30px 0 40px 0;
+}
+h2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    margin-top: 40px;
+}
+h3{
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+
+/*Green box paragraph*/
+#paragraph2{
+    font-family: "Times New Roman", Times, serif;
+    width: 75%;
+    margin: 25px auto;
+    padding: 20px 25px;
+    border: 4px solid #2f8f00; 
+    background-color: #ffffff;
+    line-height: 1.8;
+}
+/*Blue block paragraph*/
+.blue{
+    font-family: "Times New Roman", Times, serif;
+    background-color: #050c8c;
+    color: #ffffff;
+    padding: 15px 20px;
+    margin: 25px 0;
+}
+
+/*Table*/
+table{
+    border-collapse: collapse;
+    margin-top: 15px;
+    width: 70%;
+    border: 2px solid #000;
+}
+th {
+    background-color: #d9d9d9;
+    padding: 8px;
+    text-align: left;
+    border: 2px solid #000;
+}
+
+td {
+    background-color: #ffffff;
+    padding: 8px;
+    border: 2px solid #000;
+}
+
+/*Links*/
+a{
+    color: #b00000;
+    font-weight: bold;
+}
+
+/*Lists*/
+ol {
+    list-style-type: decimal-leading-zero;
+    margin-left: 30px;
+}
+
+ol li {
+    margin: 5px 0;
+}
+ol a {
+    color: #0000ee;
+    text-decoration: underline;
+}
