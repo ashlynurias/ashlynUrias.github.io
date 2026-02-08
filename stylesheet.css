@@ -1,0 +1,138 @@
+body{
+    font-family:'Times New Roman', Times, serif;
+    background: white;
+    margin: 0;
+}
+
+/*For the NavBar*/
+#jumpMenu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 16%;
+    height: 100vh;
+    background: #d4a017;
+    padding: 25px 20px;
+    box-sizing: border-box;
+}
+
+#jumpMenu h2{
+    font-size: 28px;
+    margin-bottom: 30px;
+    margin-top: 0;
+}
+
+#jumpMenu a{
+    display: block;
+    margin: 18px 0;
+    font-size: 18px;
+    color: blue;
+    text-decoration: underline;
+}
+
+/*Main part of the page*/
+main{
+    margin-left: 16%;
+    padding-top: 140px;
+}
+
+/*heading styles*/
+header{
+    position: fixed;
+    top: 0;
+    left: 16%;
+    width: 84%;
+    z-index: 1000;
+}
+
+/*red bar*/
+header > p{
+    background: red;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    height: 70px;
+    line-height: 70px;
+    margin: 0;
+}
+
+/*Black bar*/
+header nav{
+    background: black;
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    align-items: center;
+    gap: 80px;
+    padding: 12px 0;
+}
+
+header nav button{
+    background: #0033ff;
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    font-size: 18px;
+    cursor: pointer;
+    flex: 1;
+    max-width: 250px;
+    min-width: 120px;
+}
+
+h1{
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: 50px;
+}
+
+/*Articles Section*/
+#container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px 50px;
+    padding: 20px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+article{
+    width: 100%;
+}
+
+article h2{
+    font-size: 24px;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+article p{
+    line-height: 1.4;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: justify;
+}
+
+article a{
+    color: blue;
+    text-decoration: underline;
+}
+
+/*Thank you section*/
+#thanks{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #87cefa;
+    padding: 30px 60px;
+    font-size: 32px;
+    font-weight: bold;
+    border: 2px solid black;
+    margin: 0;
+}
+
+/*footer section*/
+footer{
+    margin-top: 80px;
+    text-align: center;
+    padding-bottom: 100px;
+}
