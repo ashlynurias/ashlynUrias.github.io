@@ -1,0 +1,250 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #000;
+    margin: 0;
+}
+
+/*nav bar*/
+#menuItems {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 240px;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+#menuItems button {
+    background-color: #0000ff;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 15px;
+    border: 1px solid #000;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    position: relative;
+}
+
+/*hover*/
+#menuItems button:hover {
+    background-color: #0000cc;
+}
+
+/*recent articles*/
+#recentArticles {
+    position: relative;
+}
+
+/*drop down menu*/
+#jumpMenu {
+    display: none;
+    background-color: #d4a017;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*hover dropdown*/
+#recentArticles:hover + #jumpMenu,
+#jumpMenu:hover {
+    display: block;
+}
+
+/*jump menue list*/
+#jumpMenu li {
+    border-bottom: 1px solid #000;
+}
+
+#jumpMenu li a {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px 15px;
+    color: #0000ff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/*jump menu hover*/
+#jumpMenu li:hover {
+    background-color: #0000ff;
+}
+
+#jumpMenu li:hover a {
+    color: #d4a017;
+}
+
+/* Main Content Area */
+main {
+    margin-left: 240px;
+    background-color: #fff;
+    min-height: 100vh;
+}
+
+/*header*/
+header {
+    background-color: #f51707;
+    padding: 20px;
+    text-align: center;
+}
+
+header p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    color: #000;
+    margin: 0;
+}
+
+/*title*/
+main > h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    font-size: 42px;
+    margin: 40px 0;
+    padding: 0 20px;
+}
+
+/*articles container*/
+#container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 20px 40px;
+    margin-bottom: 40px;
+}
+
+/*articles*/
+article {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 2s ease;
+    overflow: hidden;
+    color: #ccc;
+}
+
+article h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #999;
+    transition: color 2s ease;
+}
+
+article p {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: justify;
+    line-height: 1.6;
+    font-size: 14px;
+    margin-bottom: 10px;
+    transition: color 2s ease;
+}
+
+/*big first letter*/
+article > p:first-of-type::first-letter {
+    font-family: 'Times New Roman', serif;
+    font-size: 36px;
+    float: left;
+    line-height: 0.9;
+    margin-right: 5px;
+}
+
+/*hover for article */
+article:hover {
+    color: #000;
+    transform: scale(1.05);
+}
+
+article:hover h2 {
+    color: #000;
+}
+
+article:hover p {
+    color: #000;
+}
+
+/*read more*/
+article > p:last-of-type {
+    margin-top: 15px;
+}
+
+article a {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0000ff;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/*arrow */
+article a::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+/*thank you box*/
+#thanks {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #87ceeb;
+    border: 2px solid #000;
+    padding: 15px 25px;
+    font-size: 18px;
+    z-index: 999;
+}
+
+#thanks a {
+    color: #0000ff;
+    text-decoration: underline;
+}
+
+/*footer*/
+footer {
+    background-color: #333;
+    color: white;
+    padding: 40px;
+    margin-left: -240px;
+    margin-right: 0;
+}
+
+footer p {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+address {
+    font-style: normal;
+}
+
+address div {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px 20px;
+}
+
+address span:nth-child(odd) {
+    font-weight: bold;
+}
+
+address a {
+    color: #87ceeb;
+    text-decoration: none;
+}
+
+address a:hover {
+    text-decoration: underline;
+}
