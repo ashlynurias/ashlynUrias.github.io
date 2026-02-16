@@ -1,0 +1,116 @@
+/*Styling for Mobile*/
+
+/*Colors and Margins*/
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: #F5E9F5;
+    color: #000000;
+    padding: 16px;
+    line-height: 1.6;
+}
+
+header{
+    background: #F779F7;
+    color:#000000;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1{
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+header a{
+    color: white;
+    font-weight: bold;
+}
+/*Spacing Styling*/
+h2 {
+    margin-top: 22px;
+    margin-bottom: 10px;
+    color: #E031E0;
+    font-size: 20px;
+    border-bottom: 2px solid #F5E9F5;
+    padding-bottom: 4px;
+}
+
+h3 {
+    margin-top: 12px;
+    font-size: 16px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+/*Lists*/
+ul {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+li {
+    margin-bottom: 6px;
+}
+/*List of Links*/
+body > li{
+    margin-left: 20px;
+    margin-bottom:8px;
+}
+
+/*Desktop Styling*/
+@media (min-width: 768px) {
+
+    body {
+        padding: 40px;
+        max-width: 1100px;
+        margin: auto;
+        background: #F5E9F5;
+    }
+
+    header{
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        padding: 30px;
+    }
+
+    header h1{
+        font-size: 34px;
+    }
+
+    h2{
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    h3{
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    p{
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 16px;
+    }
+
+    ul{
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        columns: 2;
+        column-gap: 40px;
+    }
+
+    li{
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}        
