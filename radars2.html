@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UCF RADARS Check-in</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+#app { max-width: 480px; width: 100%; }
+
+    .screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, blue 0%, #764ba2 100%);
+      transform: translateY(70px);
+      border-radius: 20px;
+      padding: 40px 25px;
+      margin-top: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    
+  /*  .CLUBTEXT {
+    
+    position: fixed;
+    bottom: 40px;
+    right: 428;
+    color: white;
+   
+   } */
+   
+   header {
+    position: fixed;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    top: 0;
+    left: 1px;
+    right: 0;
+    height: 50px;
+    text-align: center;
+    background: linear-gradient(135deg, blue 0%, #764ba2 100%);
+    color: white;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+    
+    .active { display: flex; }
+
+    h1 { font-size: 2.2rem; margin-bottom: 15px; }
+    h2 { font-size: 1.65rem; margin-bottom: 25px; }
+
+    input, button {
+      width: 100%;
+      max-width: 380px;
+      padding: 16px;
+      margin: 12px 0;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+    }
+    input { background: white; color: #333; }
+
+    button {
+      background: #ff4757;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover { transform: scale(1.03); }
+
+    .secondary-btn { background: #4ecdc4; }
+    .yes-btn { background: #51cf66; }
+    .no-btn { background: #ff6b6b; }
+
+    .yes-no { display: flex; gap: 15px; width: 100%; max-width: 380px; }
+    .yes-no button { flex: 1; }
+
+    .radio-group {
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 20px 0;
+    }
+    .radio-group label {
+      background: rgba(255,255,255,0.2);
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .success-box { font-size: 1.7rem; }
+    .cloud { font-size: 5rem; margin: 20px 0; animation: float 3s infinite; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+    .admin-btn { background: #ffd93d; color: #333; margin-top: 30px; }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .stat-box {
+      background: rgba(255,255,255,0.15);
+      padding: 18px 25px;
+      border-radius: 12px;
+      min-width: 150px;
+      text-align: center;
+    }
+    .stat-box strong { font-size: 2rem; display: block; }
+  </style>
+</head>
+<body>
+
+	<header>
+  <h1>R.A.D.A.R.S check-in</h1>
+</header>
+
+  <div id="app">
+
+    <!-- Welcome -->
+    <div id="screen1" class="screen active">
+      <h1>Welcome</h1>
+      <button onclick="startCheckin()" class="primary-btn">Start Check-in</button>
+      <button onclick="showAdminLogin()" class="admin-btn">Admin Dashboard</button>
+    </div>
+    
+<!-- Camera / QR Scan Screen -->
+<div id="camera-screen" class="screen">
+  <h2>Scan QR Code</h2>
+
+  <video id="camera" autoplay playsinline style="width:100%; max-width:350px; border-radius:12px;"></video>
+
+  <button onclick="goToStudentCheck()" class="primary-btn" style="margin-top:20px;">
+    Continue →
+  </button>
+</div>
+
+    <!-- Are you a UCF Student? (QR should link here) -->
+    <div id="screen2" class="screen">
+      <h2>Are you a UCF Student?</h2>
+      <div class="yes-no">
+        <button onclick="ucfYes()" class="yes-btn">Yes</button>
+        <button onclick="ucfNo()" class="no-btn">No</button>
+      </div>
+    </div>
+
+    <!-- Name Input (First step for everyone) -->
+    <div id="screen3" class="screen">
+      <h2>Enter your name</h2>
+      <input type="text" id="name" placeholder="Full Name (First, Last)">
+      <button onclick="checkIfAlreadySignedIn()" class="primary-btn">Continue</button>
+    </div>
+
+    <!-- Already Signed In Message -->
+    <div id="already-signed" class="screen">
+      <div class="success-box">
+        <h1>👋 Welcome back!</h1>
+        <p>You have already signed in today.</p>
+        <p>Enjoy the meeting!</p>
+        <button onclick="restart()" class="secondary-btn" style="margin-top:30px;">Sign in another person</button>
+      </div>
+    </div>
+
+    <!-- Year Selection -->
+    <div id="screen4" class="screen">
+      <h2>Select your year</h2>
+      <div class="radio-group">
+        <label><input type="radio" name="year" value="Freshman"> Freshman</label>
+        <label><input type="radio" name="year" value="Sophomore"> Sophomore</label>
+        <label><input type="radio" name="year" value="Junior"> Junior</label>
+        <label><input type="radio" name="year" value="Senior"> Senior</label>
+      </div>
+      <button onclick="nextToNID()" class="primary-btn">Next →</button>
+    </div>
+
+    <!-- NID -->
+    <div id="screen5" class="screen">
+      <h2>Please type your NID and Password</h2>
+      <input type="text" id="nid" placeholder="NID">
+      <input type="text" id="password" placeholder="Password">
+      <button onclick="submitCheckin()" class="primary-btn">Submit</button>
+    </div>
+
+    <!-- Success -->
+    <div id="success" class="screen">
+      <div class="success-box">
+        <h1>✓ You are signed in!</h1>
+        <p>Thank you for joining us</p>
+        <div class="cloud">☁️</div>
+        <button onclick="restart()" class="secondary-btn">Sign in another person</button>
+      </div>
+    </div>
+
+    <!-- Admin Login -->
+    <div id="admin-login" class="screen">
+      <h2>Admin Login</h2>
+      <input type="password" id="admin-pass" placeholder="Enter password">
+      <button onclick="checkAdminPassword()" class="primary-btn">Login</button>
+      <button onclick="restart()" class="secondary-btn">Back</button>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="screen">
+      <h2>Meeting Attendance</h2>
+      <div class="stats" id="stats"></div>
+      <button onclick="clearData()" class="admin-btn" style="background:#ff4757; margin-top:20px;">Clear All Data</button>
+      <button onclick="restart()" class="secondary-btn">Back to Check-in</button>
+    </div>
+
+  </div>
+  
+      <!-- <div class="CLUBTEXT"><h2>[CLUB NAME] GBA CHECK IN</h2></div> -->
+
+  
+
+  <script>
+    const ADMIN_PASSWORD = "pass";   // Change this if you want
+
+    let currentMember = {};
+    let stream;
+
+function startCamera() {
+  const video = document.getElementById('camera');
+
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+    .then(s => {
+      stream = s;
+      video.srcObject = stream;
+    })
+    .catch(err => {
+      console.error("Camera error:", err);
+      alert("Camera access not available (this is fine for prototype)");
+    });
+}
+
+function stopCamera() {
+  if (stream) {
+    stream.getTracks().forEach(track => track.stop());
+  }
+}
+
+function goToStudentCheck() {
+  stopCamera();
+  showScreen('screen2'); // your existing UCF question screen
+}
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function startCheckin() {
+      showScreen('camera-screen');
+      startCamera();
+    }
+
+
+    function ucfYes() {
+      currentMember.isUCF = true;
+      showScreen('screen3');
+    }
+
+    function ucfNo() {
+      currentMember.isUCF = false;
+      showScreen('screen3');
+    }
+
+    function checkIfAlreadySignedIn() {
+      const name = document.getElementById('name').value.trim();
+      if (!name) {
+        alert("Please enter your name");
+        return;
+      }
+
+      const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+      const members = JSON.parse(localStorage.getItem('ucfAttendance') || '[]');
+
+      // Check if this name already signed in today
+      const alreadySigned = members.some(m => 
+        m.name.toLowerCase() === name.toLowerCase() && 
+        m.date === today
+      );
+
+      if (alreadySigned) {
+        showScreen('already-signed');
+      } else {
+        currentMember.name = name;
+        currentMember.date = today;
+        showScreen('screen4');
+      }
+    }
+
+    function nextToNID() {
+      const yearRadio = document.querySelector('input[name="year"]:checked');
+      if (!yearRadio) {
+        alert("Please select your year");
+        return;
+      }
+      currentMember.year = yearRadio.value;
+      showScreen('screen5');
+    }
+
+    function submitCheckin() {
+      const nid = document.getElementById('nid').value.trim();
+      if (!nid) {
+        alert("Please enter your NID and password");
+        return;
+      }
+
+      currentMember.nid = nid;
+      currentMember.timestamp = new Date().toLocaleString();
+
+      saveMember(currentMember);
+      showScreen('success');
+    }
+
+    function saveMember(member) {
+      let members = JSON.parse(localStorage.getItem('ucfAttendance') || '[]');
+      members.push(member);
+      localStorage.setItem('ucfAttendance', JSON.stringify(members));
+    }
+
+    function showAdminLogin() {
+      showScreen('admin-login');
+    }
+
+    function checkAdminPassword() {
+      if (document.getElementById('admin-pass').value === ADMIN_PASSWORD) {
+        showAdminDashboard();
+      } else {
+        alert("Incorrect password");
+      }
+    }
+
+    function showAdminDashboard() {
+      showScreen('admin-dashboard');
+      renderStats();
+    }
+
+    function renderStats() {
+      const members = JSON.parse(localStorage.getItem('ucfAttendance') || '[]');
+      const total = members.length;
+
+      const byYear = { Freshman: 0, Sophomore: 0, Junior: 0, Senior: 0 };
+      let ucfCount = 0, nonUCFCount = 0;
+
+      members.forEach(m => {
+        if (m.year && byYear[m.year] !== undefined) byYear[m.year]++;
+        if (m.isUCF === true) ucfCount++;
+        else nonUCFCount++;
+      });
+
+      let html = `
+        <div class="stat-box"><strong>${total}</strong><br>Total Attended</div>
+        <div class="stat-box"><strong>${ucfCount}</strong><br>UCF Students</div>
+        <div class="stat-box"><strong>${nonUCFCount}</strong><br>Non-UCF</div>
+      `;
+
+      Object.keys(byYear).forEach(year => {
+        if (byYear[year] > 0) {
+          html += `<div class="stat-box"><strong>${byYear[year]}</strong><br>${year}</div>`;
+        }
+      });
+
+      document.getElementById('stats').innerHTML = html;
+    }
+
+    function clearData() {
+      if (confirm("Delete ALL attendance data?")) {
+        localStorage.removeItem('ucfAttendance');
+        renderStats();
+      }
+    }
+
+    function restart() {
+      currentMember = {};
+      document.getElementById('name').value = '';
+      document.getElementById('nid').value = '';
+      document.getElementById('admin-pass').value = '';
+      document.querySelectorAll('input[name="year"]').forEach(r => r.checked = false);
+      showScreen('screen1');
+    }
+
+    window.onload = () => showScreen('screen1');
+  </script>
+</body>
+</html>
