@@ -29,61 +29,23 @@
 
     body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(247, 198, 0, 0.22), transparent 32%),
-        linear-gradient(180deg, #f7f2e9 0%, #f2ede4 100%);
+      background: #f3efe7;
       color: var(--ink);
       min-height: 100vh;
-      padding: 32px 18px 60px;
+      padding: 0;
     }
 
     .page {
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-
-    .project-title {
-      margin-bottom: 18px;
-      text-align: center;
-    }
-
-    .project-title h1 {
-      font-size: clamp(1.6rem, 2.8vw, 2.6rem);
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .project-title p {
-      color: var(--muted);
-      font-size: 0.96rem;
+      width: 100%;
+      margin: 0;
     }
 
     .app-shell {
       background: var(--panel);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
+      border-radius: 0 0 28px 28px;
+      box-shadow: none;
       overflow: hidden;
-      border: 1px solid rgba(25, 25, 25, 0.05);
-    }
-
-    .app-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: flex-start;
-      padding: 22px 28px 10px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.46), rgba(255, 255, 255, 0.12));
-    }
-
-    .app-head h2 {
-      font-size: 1.6rem;
-      margin-bottom: 6px;
-    }
-
-    .app-head p,
-    .app-head span {
-      color: var(--muted);
-      font-size: 0.88rem;
+      border: none;
     }
 
     .topbar {
@@ -92,27 +54,27 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 18px;
-      min-height: 54px;
+      padding: 0 34px;
+      min-height: 80px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-size: 0.9rem;
+      font-size: 0.98rem;
       min-width: 0;
     }
 
     .brand-badge {
       background: var(--accent);
       color: #181818;
-      width: 22px;
-      height: 22px;
-      border-radius: 6px;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
       display: grid;
       place-items: center;
-      font-size: 0.68rem;
+      font-size: 1rem;
       font-weight: 800;
     }
 
@@ -120,11 +82,13 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      font-size: 0.95rem;
+      font-weight: 600;
     }
 
     .nav-tabs {
       display: flex;
-      gap: 6px;
+      gap: 10px;
       align-items: stretch;
       flex-wrap: wrap;
       justify-content: center;
@@ -134,8 +98,9 @@
       background: transparent;
       color: rgba(255, 255, 255, 0.72);
       border: 0;
-      padding: 16px 14px 14px;
-      font-size: 0.86rem;
+      padding: 28px 18px 22px;
+      font-size: 0.98rem;
+      font-weight: 600;
       cursor: pointer;
       border-bottom: 3px solid transparent;
     }
@@ -146,21 +111,21 @@
     }
 
     .user-pill {
-      width: 28px;
-      height: 28px;
+      width: 46px;
+      height: 46px;
       border-radius: 999px;
       display: grid;
       place-items: center;
       background: var(--accent);
       color: #181818;
       font-weight: 700;
-      font-size: 0.75rem;
+      font-size: 1rem;
       flex-shrink: 0;
     }
 
     .screen {
       display: none;
-      padding: 22px;
+      padding: 38px 40px 42px;
     }
 
     .screen.active {
@@ -172,17 +137,17 @@
     .actions-grid,
     .two-col {
       display: grid;
-      gap: 18px;
+      gap: 22px;
     }
 
     .stats-grid {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      margin-bottom: 18px;
+      margin-bottom: 30px;
     }
 
     .events-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-bottom: 18px;
+      margin-bottom: 30px;
     }
 
     .actions-grid {
@@ -198,7 +163,7 @@
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: var(--radius-md);
-      padding: 18px;
+      padding: 24px 26px;
       box-shadow: 0 8px 22px rgba(31, 24, 18, 0.05);
     }
 
@@ -211,23 +176,23 @@
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.09em;
-      font-size: 0.7rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      margin: 6px 0 10px;
+      margin: 0 0 18px;
     }
 
     .metric-value {
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
       font-weight: 700;
       line-height: 1;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
 
     .metric-note,
     .tiny,
     .subtle {
       color: var(--muted);
-      font-size: 0.82rem;
+      font-size: 0.92rem;
     }
 
     .highlight-card {
@@ -244,13 +209,13 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 10px;
+      padding: 7px 14px;
       border-radius: 999px;
       background: #eef8e9;
       color: #408440;
-      font-size: 0.74rem;
+      font-size: 0.84rem;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 18px;
     }
 
     .tag.upcoming {
@@ -260,11 +225,11 @@
 
     .progress {
       width: 100%;
-      height: 7px;
+      height: 8px;
       border-radius: 999px;
       background: #ece5d8;
       overflow: hidden;
-      margin-top: 14px;
+      margin-top: 18px;
     }
 
     .progress > span {
@@ -284,8 +249,8 @@
 
     .button {
       border: 0;
-      border-radius: 12px;
-      padding: 12px 16px;
+      border-radius: 14px;
+      padding: 15px 18px;
       cursor: pointer;
       background: var(--accent);
       color: #181818;
@@ -317,20 +282,20 @@
     .quick-action {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       width: 100%;
       text-align: left;
-      padding: 16px;
+      padding: 20px 22px;
       border: 1px solid var(--line);
       background: var(--card);
-      border-radius: 14px;
+      border-radius: 18px;
       cursor: pointer;
     }
 
     .quick-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
       display: grid;
       place-items: center;
       background: #f7f2e8;
@@ -341,7 +306,8 @@
 
     .quick-action strong {
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      font-size: 0.98rem;
     }
 
     .form-grid {
@@ -569,12 +535,11 @@
 
     @media (max-width: 640px) {
       body {
-        padding: 18px 12px 40px;
+        padding: 0;
       }
 
-      .app-head,
       .screen {
-        padding: 18px 16px;
+        padding: 22px 16px 28px;
       }
 
       .form-grid,
@@ -593,27 +558,11 @@
 </head>
 <body>
   <div class="page">
-    <div class="project-title">
-      <h1>Final Screens</h1>
-      <p>UCF Culture Connections officer dashboard with event creation, members, reports, and attendance check-in.</p>
-    </div>
-
     <div class="app-shell">
-      <div class="app-head">
-        <div>
-          <h2>UCF Culture Connections</h2>
-          <p>Final Screen Gallery - Design &amp; Digital Prototype Documentation</p>
-        </div>
-        <div style="text-align:right;">
-          <span>Team R.A.D.A.R.S.</span><br>
-          <span>Officer Admin Preview</span>
-        </div>
-      </div>
-
       <div class="topbar">
         <div class="brand">
           <div class="brand-badge">CC</div>
-          <div class="brand-text">Culture Connections / Asian Student Association</div>
+          <div class="brand-text">Culture Connections <span style="color:#5f5f5f; font-weight:600; margin-left:10px;">/ Asian Student Association</span></div>
         </div>
 
         <div class="nav-tabs">
@@ -623,12 +572,10 @@
           <button class="nav-tab" data-screen="reports">Reports</button>
         </div>
 
-        <div class="user-pill">US</div>
+        <div class="user-pill">GS</div>
       </div>
 
       <section id="dashboard" class="screen active">
-        <div class="section-label">Screen 1 - Officer Dashboard</div>
-
         <div class="stats-grid">
           <div class="card">
             <div class="metric-value" id="total-members">214</div>
@@ -646,9 +593,8 @@
           </div>
 
           <div class="card highlight-card">
-            <div class="subtle" style="margin-bottom:10px;">Quick Start</div>
-            <h3 style="margin-bottom:16px;">Launch a new event</h3>
-            <button class="button" onclick="setScreen('events')">+ Create New Event</button>
+            <div class="metric-value" style="font-size:2.2rem; margin-bottom:18px;">+</div>
+            <h3 style="font-size:1.05rem; margin-bottom:0;">Create New Event</h3>
           </div>
         </div>
 
@@ -657,22 +603,25 @@
           <div class="card">
             <div class="tag">Check-in Open</div>
             <h3>Spring GBM #4</h3>
-            <div class="tiny">April 8, 2025 · Student Union 218 · 7:00 PM</div>
+            <div class="tiny">Apr 8, 2025 · Student Union 218 · 7:00 PM</div>
             <div class="progress" style="--fill: 58%;"><span></span></div>
+            <div class="tiny" style="margin-top:12px;">127 / 214 checked in</div>
           </div>
 
           <div class="card">
             <div class="tag upcoming">Upcoming</div>
             <h3>Cultural Fair 2025</h3>
-            <div class="tiny">April 12, 2025 · Memory Mall · 2:00 PM</div>
+            <div class="tiny">Apr 12, 2025 · UCF Breezeway · 12:00 PM</div>
             <div class="progress" style="--fill: 32%;"><span></span></div>
+            <div class="tiny" style="margin-top:12px;">0 / 300 checked in</div>
           </div>
 
           <div class="card">
             <div class="tag upcoming">Upcoming</div>
             <h3>End of Year Banquet</h3>
-            <div class="tiny">April 20, 2025 · Pegasus Ballroom · 6:00 PM</div>
+            <div class="tiny">Apr 20, 2025 · Pegasus Ballroom · 6:00 PM</div>
             <div class="progress" style="--fill: 18%;"><span></span></div>
+            <div class="tiny" style="margin-top:12px;">0 / 180 checked in</div>
           </div>
         </div>
 
