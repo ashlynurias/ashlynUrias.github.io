@@ -6,7 +6,7 @@
 <title>R.A.D.A.R.S · Check-In</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/zxing-js/0.18.6/index.min.js"></script>
+<script src="https://unpkg.com/@zxing/library@latest"></script>
 <style>
 /* ══════════════════════════════════════════════
    DESIGN TOKENS — white / black / gold
@@ -669,7 +669,7 @@ body {
       <div class="ci-title">Scan QR Code</div>
       <div class="ci-sub">Point your camera at the meeting QR code.</div>
       <div class="scanner-wrap">
-        <video id="qr-video" playsinline muted></video>
+        <video id="qr-video" playsinline autoplay muted></video>
         <div class="scanner-overlay">
           <div class="sc tl"></div><div class="sc tr"></div>
           <div class="sc bl"></div><div class="sc br"></div>
@@ -1233,56 +1233,12 @@ function submitPIN() {
 function isMobile() {
   return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || window.innerWidth < 768;
 }
-let codeReader;
-async function startScan() {
+function startScan() {
   showScreen('screen-scan');
-
-  const video = document.getElementById('qr-video');
-  const status = document.getElementById('scan-status');
-
-  try {
-    codeReader = new ZXing.BrowserQRCodeReader();
-
-    const devices = await ZXing.BrowserQRCodeReader.listVideoInputDevices();
-
-    if (devices.length === 0) {
-      status.textContent = "No camera found";
-      status.classList.add("error");
-      return;
-    }
-
-    const selectedDeviceId = devices[0].deviceId;
-
-    codeReader.decodeFromVideoDevice(selectedDeviceId, video, (result, err) => {
-      if (result) {
-        status.textContent = "QR Code detected!";
-        status.classList.remove("error");
-        status.classList.add("ok");
-
-        console.log("QR Result:", result.text);
-
-        // Example: move to next screen
-        setTimeout(() => {
-          showScreen('screen2');
-        }, 800);
-
-        codeReader.reset(); // stop scanning
-      }
-
-      if (err && !(err instanceof ZXing.NotFoundException)) {
-        console.error(err);
-        status.textContent = "Camera error";
-        status.classList.add("error");
-      }
-    });
-
-  } catch (error) {
-    console.error(error);
-    status.textContent = "Camera access denied or not supported";
-    status.classList.add("error");
-  }
+  document.getElementById('proceed-btn').style.display = 'none';
+  setStatus('Requesting camera permission…','');
+  requestCameraAndScan();
 }
-
 function setStatus(msg,type){const el=document.getElementById('scan-status');el.textContent=msg;el.className='scan-status'+(type?' '+type:'');}
 function showProceedBtn(){document.getElementById('proceed-btn').style.display='block';}
 function proceedManually(){
@@ -1298,7 +1254,7 @@ async function requestCameraAndScan(){
   let stream;
   try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}}});}
   catch(err){setStatus('❌ Camera denied. Use PIN below.','error');showProceedBtn();return;}
-  stream.getTracks().forEach(t=>t.stop());
+  //stream.getTracks().forEach(t=>t.stop());
   if(typeof ZXing==='undefined'){setStatus('⚠️ Scanner unavailable. Use PIN.','error');showProceedBtn();return;}
   scanActive=true; setStatus('📷 Camera active — point at the QR code.','');
   try{
@@ -1321,12 +1277,7 @@ function stopScan(){
   const v=document.getElementById('qr-video');
   if(v?.srcObject){v.srcObject.getTracks().forEach(t=>t.stop());v.srcObject=null;}
 }
-function stopScanAndGoBack() {
-  if (codeReader) {
-    codeReader.reset();
-  }
-  showScreen('screen1');
-}
+function stopScanAndGoBack(){stopScan();showScreen('screen1');}
 
 // ── CHECK-IN FLOW ──
 function ucfYes(){currentMember.isUCF=true;showScreen('screen3');}
